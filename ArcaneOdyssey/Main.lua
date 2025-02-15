@@ -31,6 +31,16 @@ task.spawn(function()
     end
 end)
 
+task.spawn(function()
+    while task.wait(1) do
+        for _,Instance in LocalPlayer.PlayerGui:GetChildren() do
+            if Instance.Name:lower() == "deathscreen" then
+                Instance.Enabled = false
+            end
+        end
+    end
+end)
+
 local remotes = {
     "DealAttackDamage",
     "DealStrengthDamage",
@@ -196,6 +206,7 @@ uiSecs.MagicExploits:addTextbox("Size", "1", function(value)
     if not ModifiedMagic then return end
     if not tonumber(value) then return end
     local num = tonumber(value)
+    if num >= 75 then Veynx:Notify("Warning!", "This could break your game if you set it too high. \n Suggested value: 50") end
 
     MagicModule["Types"][ModifiedMagic].Size = num
 end)
@@ -204,6 +215,7 @@ uiSecs.MagicExploits:addTextbox("Speed", "1", function(value)
     if not ModifiedMagic then return end
     if not tonumber(value) then return end
     local num = tonumber(value)
+    if num >= 3 then Veynx:Notify("Warning!", "This could break your game if you set it too high. \n Suggested value: <3") end
 
     MagicModule["Types"][ModifiedMagic].Speed = num
 end)
@@ -212,6 +224,7 @@ uiSecs.MagicExploits:addTextbox("Imbue Speed", "1", function(value)
     if not ModifiedMagic then return end
     if not tonumber(value) then return end
     local num = tonumber(value)
+    if num >= 3 then Veynx:Notify("Warning!", "This could break your game if you set it too high.  \n Suggested value: <3") end
 
     MagicModule["Types"][ModifiedMagic].ImbueSpeed = num
 end)
@@ -324,7 +337,7 @@ task.spawn(function()
     godHook = hookmetamethod(game, "__namecall", newcclosure(function(self, ...)
         local args = { ... }
 
-        if not checkcaller() and tostring(self) == "DealAttackDamage" and var["godmode"] then
+        if not checkcaller() and (tostring(self) == "DealAttackDamage" or tostring(self) == "DealBossDamage") and var["godmode"] then
             if args[2] == LocalPlayer.Character then
                 args[2] = nil
             end
@@ -332,7 +345,7 @@ task.spawn(function()
             if args[2] == LocalPlayer.Character then
                 args[2] = nil
             end
-        elseif not checkcaller() and (tostring(self) == "DealStrengthDamage" or tostring(self) == "DealWeaponDamage" or tostring(self) == "DealBossDamage") and var["godmode"] then
+        elseif not checkcaller() and (tostring(self) == "DealStrengthDamage" or tostring(self) == "DealWeaponDamage") and var["godmode"] then
             if args[3] == LocalPlayer.Character then
                 args[3] = nil
             end
