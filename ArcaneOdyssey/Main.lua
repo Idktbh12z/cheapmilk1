@@ -1,8 +1,7 @@
--- Licensed under CC BY-NC 4.0.
 if getgenv().PMAO == true then return end
 getgenv().PMAO = true
 
-local lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/Idktbh12z/cheapmilk/main/UiLib/Main.lua"))()
+local lib = loadstring(game:HttpGet("https://gist.githubusercontent.com/Idktbh12z/e557ec01b8234cccb7d88f2c12691a5a/raw/3824e26041944a83ec39ff0b033f994b1bbdbadd/UiLib.lua"))()
 local Veynx = lib.new("Snowy | Arcane Odyssey [DEV]")
 
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
