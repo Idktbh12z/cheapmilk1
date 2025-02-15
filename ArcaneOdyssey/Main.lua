@@ -1,6 +1,4 @@
 -- Licensed under CC BY-NC 4.0.
--- Licensed under CC BY-NC 4.0; no financial use allowed.
-
 if getgenv().PMAO == true then return end
 getgenv().PMAO = true
 
